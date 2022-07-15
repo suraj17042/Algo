@@ -1,19 +1,21 @@
 package Main;
 
-
-import ch_2.Insertion;
-import ch_2.InsertionSortDescending;
-import ch_2.MergeSort;
-import ch_2.ex_2_1_3_LinearSearch;
-import ch_2.ex_2_1_4_BinaryAddition;
-import ch_4.MaxSubArrayDivideAndConquer;
-import ch_4.MaxSubarrayLinearTime;
-import ch_6.HeapSort;
+import ch_6.PriorityQueue;
 
 public class TestCode {
 	public static void main(String[] args) {
-		int[] input = {13, 3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
-		print(HeapSort.heapSort(input));
+		int[] input = {10, 9, 8, 7, 6, 5,4,3,2,1,0};
+		int heapSize = input.length - 1;
+		System.out.println(PriorityQueue.extractMax(input, heapSize));
+		heapSize--;
+		print(input);
+		PriorityQueue.increaseKey(input, 8, 8, heapSize);
+		System.out.println();
+		print(input);
+		System.out.println();
+		PriorityQueue.insert(input, 7, heapSize);
+		print(input);
+		
 //		System.out.println("The inversion count " + MergeSort.inversionCount);
 	}
 	private static void print(int [] arr) {

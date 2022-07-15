@@ -1,8 +1,12 @@
 package ch_6;
 
+// Heap is a data structure which satisfies 2 properties
+// 1. It is nearly complete binary tree
+// 2. ancestor will be greater than any of descendant(in which it is max-heap) or
+// ancestor will be smaller than any of descendant(in which it is called min-heap)
+
 public class HeapSort {
 
-	
 	public static int [] heapSort(int[] input) {
 		buildMaxHeap(input);
 		int heapSize = input.length - 1;
@@ -18,8 +22,7 @@ public class HeapSort {
 		for(int i = input.length/2; i >= 0 ; i--) {
 			maxHeapify(input, i, input.length-1);
 		}
-	}
-	
+	}	
 	
 	public static void maxHeapify(int[] input, int index, int heapSize) {
 		while(index*2 <= heapSize) {

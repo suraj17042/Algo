@@ -2,36 +2,31 @@ package Main;
 
 import ch_10.Queue;
 import ch_10.Stack;
+import ch_12.BinaryTree;
+import ch_12.TreeNode;
 import ch_6.PriorityQueue;
 import ch_7.Quicksort;
 
 public class TestCode {
 	public static void main(String[] args) {
-//		int[] input = {10, 9, 8, 7, 6, 5,4,3,2,1,0,1,2,3,4,5,6,7,10};
-//		print(Quicksort.quickSort(input, 0, input.length - 1));
-		Queue queue = new Queue(3);
-		queue.dequeue();
-		queue.enqueue(1);
-		queue.enqueue(2);
-		queue.printQueue();
-		queue.enqueue(3);
-		queue.printQueue();
-		queue.dequeue();
-		queue.printQueue();
-		queue.enqueue(5);
-		queue.printQueue();
-		queue.dequeue();
-		queue.printQueue();
-		queue.dequeue();
-		queue.dequeue();
-		queue.enqueue(67);
-		System.out.println(queue.isEmpty() + " " + queue.isFull());
-		
-		
+
+		TreeNode root = new TreeNode(null, null, null, 20);
+		BinaryTree tree = new BinaryTree(root);
+		tree.insert(10);
+		tree.insert(5);
+		tree.insert(0);
+		tree.insert(6);
+		tree.insert(9);
+		tree.insert(12);
+		tree.inorder(root);
+		System.out.println();
+		tree.preorder(root);
+		System.out.println();
+		tree.postorder(root);
 	}
 	private static void print(int [] arr) {
 		for(int i = 0; i < arr.length; i++) {
-			System.out.print(arr[i] + " ");
+			System.out.print(arr[i] + " " );
 		}
 	}
 }

@@ -1,9 +1,9 @@
 package ch_12;
 
-public class BinaryTree {
+public class BinarySearchTree {
 	TreeNode root;
 
-	public BinaryTree(TreeNode root) {
+	public BinarySearchTree(TreeNode root) {
 		super();
 		this.root = root;
 	}
@@ -33,6 +33,34 @@ public class BinaryTree {
 				}
 			}
 		}
+	}
+	
+	public TreeNode searchRecursively(TreeNode root, int k) {
+		TreeNode myNode = root;
+		if (myNode == null) {
+			return null;
+		}
+		if (myNode.getKey() == k) {
+			return myNode;
+		}
+		else if(myNode.getKey() > k) {
+			return searchRecursively(myNode.getLeftChild(), k);
+		}
+		else {
+			return searchRecursively(myNode.getRightChild(), k);
+		}
+	}
+	
+	public TreeNode searchIteratively(TreeNode root, int k) {
+		while (root != null) {
+			if (root.getKey() == k)
+				return root;
+			else if (root.getKey() > k)
+				root = root.getLeftChild();
+			else
+				root = root.getRightChild();
+		}
+		return root;
 	}
 	
 	public void inorder(TreeNode node) {

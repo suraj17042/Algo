@@ -36,6 +36,11 @@ public class TreeNode {
 	public void setKey(int key) {
 		this.key = key;
 	}
+	@Override
+	public String toString() {
+		return "TreeNode [key=" + key + "]";
+	}
+	
 	
 
 }

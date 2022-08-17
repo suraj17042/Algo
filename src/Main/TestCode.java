@@ -7,6 +7,10 @@ import ch_12.TreeNode;
 import ch_6.PriorityQueue;
 import ch_7.Quicksort;
 
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class TestCode {
 	public static void main(String[] args) {
 
@@ -16,9 +20,17 @@ public class TestCode {
 		tree.insert(5);
 		tree.insert(0);
 		tree.insert(6);
+		tree.insert(30);
 		tree.insert(9);
-		tree.insert(12);
-		System.out.println(tree.searchIteratively(root, -1));
+//		tree.insert(12);
+		TreeNode node = tree.searchRecursively(root, 9);
+
+		tree.delete(node);
+		tree.inorder(root);
+		System.out.println();
+		tree.preorder(root);
+
+
 	}
 	private static void print(int [] arr) {
 		for(int i = 0; i < arr.length; i++) {

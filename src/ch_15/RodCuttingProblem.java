@@ -39,18 +39,18 @@ public class RodCuttingProblem {
 
     // Price is the array that contain the price of rod of particular length. For eg:- price[4] = 5 means on selling the rod with length 4 inch
     // without cutting will give us 5 rs
-    public static int rodCuttingNaiveRecursion(int[] price, int size){
+    public static int rodCuttingNaiveRecursion(int[] price, int size) {
         if (size == 0)
             return 0; // A rod with length 0 won't generate any revenue. Hence 0
         int maxRevenue = 0;
 //        System.out.println("method called for size " + size);
-        for (int i = 1; i <= size; i++){ // Here we are checking for each left cut
-                maxRevenue = max(maxRevenue, price[i] + rodCuttingNaiveRecursion(price, size - i));
+        for (int i = 1; i <= size; i++) { // Here we are checking for each left cut
+            maxRevenue = max(maxRevenue, price[i] + rodCuttingNaiveRecursion(price, size - i));
         }
         return maxRevenue;
     }
 
-    private static int max(int a, int b){
+    private static int max(int a, int b) {
         return a > b ? a : b;
     }
 
@@ -85,7 +85,7 @@ public class RodCuttingProblem {
     For eg:- in rod cutting problem scenerio r(10) and r(9) both will have r(8), r(7), r(6), ... as their subproblem.
     this is called overlapping subproblem property.
      */
-
+    // Approach 2:- DP: Top-Down with Memoization
     // Applying dynamic programming approach to previous naive recursive solution
     // The only problem with the previous solution is that it was solving same problem many times. To avoid that we will
     // store the solution of the subproblem when we solve it firs time and from the next time we will use that solution.
@@ -93,14 +93,14 @@ public class RodCuttingProblem {
     // Applying this storage element to the simple naive recursive solution is called top down approach of dynamic programming with memoization
     // Memoization :- Creating a memo of problem size and its solution.
 
-    public static int rodCuttingTopDownWithMemoization(int price[], int size){
-        int [] r = new int[size + 1];
-        for (int i = 0; i < size+1; i++)
+    public static int rodCuttingTopDownWithMemoization(int price[], int size) {
+        int[] r = new int[size + 1];
+        for (int i = 0; i < size + 1; i++)
             r[i] = Integer.MIN_VALUE;  // Initializing the revenue array with minimum value
         return topDownRodCuttingHelper(price, size, r);
     }
 
-    private static int topDownRodCuttingHelper(int[] price, int size, int[] r){
+    private static int topDownRodCuttingHelper(int[] price, int size, int[] r) {
         if (size == 0)
             return 0;
         if (r[size] > Integer.MIN_VALUE)
@@ -109,9 +109,71 @@ public class RodCuttingProblem {
 //        System.out.println("method called for size " +size);  // To view the difference b/w the DP and naive solution uncomment this line
         // and run both the solution. In DP approach for each size there will be only one line printed but for naive it will be many times depending on the size of problem
         for (int i = 1; i <= size; i++)
-            maxRevenue = max(maxRevenue, price[i] + topDownRodCuttingHelper(price, size -i, r));
+            maxRevenue = max(maxRevenue, price[i] + topDownRodCuttingHelper(price, size - i, r));
         r[size] = maxRevenue;
         return maxRevenue;
     }
 
+    /*
+    Approach 3: DP- Bottom Up
+    The idea of bottom up is to solve the problem in such a way that all of the subproblem which may arise in between is already solved.
+    In this approach we start with that smallest subproblem and go upto the bigger main problem solving all the subproblems in between. Hence,
+    called the bottom up approach. Since, all the smaller subproblem is already solved while going to the main bigger problem we could simply
+    use the solution of those subproblem while solving this big problem.
+     */
+
+    public static int rodCuttingBottomUp(int price[], int size) {
+        int r[] = new int[size + 1];
+        for (int i = 0; i <= size; i++)
+            r[i] = Integer.MIN_VALUE;
+        r[0] = 0; // for problem of siz = 0
+        for (int i = 1; i <= size; i++) {  // bigger main problems
+            int maxRevenue = Integer.MIN_VALUE;
+            for (int j = 1; j <= i; j++) {
+                maxRevenue = max(maxRevenue, price[j] + r[i - j]); // Note that we are directly using the value present in r.
+                // we are not calling the method again as if we are using that then it has already been solved and stored in the array r.
+                // This is the gist of bottom up approach.
+            }
+            r[i] = maxRevenue;  // final solution for each problem is stored
+        }
+        return r[size];
+    }
+
+    /*
+    Although we got the maximum revenue which we can generate for a rod of given size we don't know what should be the length of each of
+    the piece cut from the rod. We can also store this information using a slight modification of the above alogrithm. To find
+    the length of each piece is called the reconstruction of the solution. Reconstruction of solution mean getting the exact solution which
+    gave us the optimal value and not only the optimal value.
+    For reconstruction of the solution we will write the above bottom up code as it is but with a slight modification that we will store
+    the choice of cutting we made in the array choice
+     */
+
+    // Compare the differences with the above code. There is only a difference of two lines which is explained in the code
+    public static String reconstuctingRodCuttingSolution(int price[], int size){
+        int r[] = new int[size + 1];
+        int choice[] = new int[size + 1];  // To store the choices of the cut
+        for(int i = 0; i <= size; i++)
+            r[i] = Integer.MIN_VALUE;
+        r[0] = 0;
+        for (int i = 1; i <= size; i++){
+            int maxRevenue = Integer.MIN_VALUE;
+            for (int j = 1; j <= i; j++) {
+                maxRevenue = max(maxRevenue, price[j] + r[i - j]);
+                if (maxRevenue == price[j] + r[i - j])
+                    choice[i] = j; // Means that maximum revenue for a rod of length i can be generated if we make the first cut at j
+            }
+            r[i] = maxRevenue;
+        }
+        String solution = "The maximum revenue is " + r[size] + " and it is achieved by " + getExactSolution(choice, size);
+        return solution;
+    }
+
+    private static String getExactSolution(int[] choice, int size){
+        String choiceList = "";
+        while (size > 0){
+            choiceList = choiceList + " " + choice[size];
+            size -= choice[size];
+        }
+        return choiceList;
+    }
 }

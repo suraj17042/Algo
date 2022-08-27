@@ -10,7 +10,7 @@ public class TestCode {
 
 	int[] price = {0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
 		Instant start = Instant.now();
-	print("" + RodCuttingProblem.rodCuttingTopDownWithMemoization(price, 10));
+	print("" + RodCuttingProblem.reconstuctingRodCuttingSolution(price, 4));
 //		print("" + RodCuttingProblem.rodCuttingNaiveRecursion(price, 10));
 	Instant stop = Instant.now();
 	System.out.println("the duration is " + Duration.between(start, stop));

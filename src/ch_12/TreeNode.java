@@ -4,6 +4,7 @@ public class TreeNode {
 	private TreeNode leftChild;
 	private TreeNode rightChild;
 	private TreeNode parent;
+
 	private int key;
 	public TreeNode(TreeNode leftChild, TreeNode rightChild, TreeNode parent, int key) {
 		super();

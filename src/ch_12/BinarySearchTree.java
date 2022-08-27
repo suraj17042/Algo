@@ -1,7 +1,7 @@
 package ch_12;
 
 public class BinarySearchTree {
-	TreeNode root;
+	protected TreeNode root;
 
 	public BinarySearchTree(TreeNode root) {
 		super();

@@ -1,5 +1,7 @@
 package ch_15;
 
+import java.util.Arrays;
+
 /*
     Context :- For simple code of multiplying two matrices A(of dimension p X q) and B (q X r), the complexity depends on the number of scalar
     multiplications required to multiply the two matrices which will be equal to p*q*r. Two matrices(A and B) are said to be compatible for
@@ -17,8 +19,6 @@ package ch_15;
     Problem :- For a given chain of matrix A1A2...An, find the order of multiplying the matrices such that the number of scalar multiplication
     is minimum.
  */
-
-import java.util.Arrays;
 
 public class MatrixChainMultiplication {
 

@@ -1,5 +1,6 @@
 package Main;
 
+import ch_15.LCS;
 import ch_15.MatrixChainMultiplication;
 import ch_15.RodCuttingProblem;
 import ch_15.ex_15_1.ex_15_1_3;
@@ -10,14 +11,10 @@ import java.time.Instant;
 
 public class TestCode {
 	public static void main(String[] args) {
-	int[] dimenson = {10, 40, 20};
-	MatrixChainMultiplication.matrixChainRecursive(dimenson);
-	System.out.println();
-	MatrixChainMultiplication.matrixChainBottomUp(dimenson);
-//		Instant start = Instant.now();
-//		print("" + RodCuttingProblem.rodCuttingNaiveRecursion(price, 10));
-//	Instant stop = Instant.now();
-//	System.out.println("the duration is " + Duration.between(start, stop));
+	String s1 = "ABCBDABC";
+	String s2 = "BADCABAEC";
+	System.out.println(LCS.lCSBottomUp(s1, s2));
+	System.out.println(LCS.longestCommonSubsequence(s1, s2));
 	}
 	private static void print(int [] arr) {
 		for(int i = 0; i < arr.length; i++) {

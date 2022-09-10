@@ -11,8 +11,8 @@ import java.time.Instant;
 
 public class TestCode {
 	public static void main(String[] args) {
-	String s1 = "ABCBDABC";
-	String s2 = "BADCABAEC";
+	String s1 = "ABCBD";
+	String s2 = "BAA";
 	System.out.println(LCS.lCSBottomUp(s1, s2));
 	System.out.println(LCS.longestCommonSubsequence(s1, s2));
 	}

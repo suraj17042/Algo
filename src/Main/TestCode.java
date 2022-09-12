@@ -1,20 +1,10 @@
 package Main;
 
-import ch_15.LCS;
-import ch_15.MatrixChainMultiplication;
-import ch_15.RodCuttingProblem;
-import ch_15.ex_15_1.ex_15_1_3;
-import ch_15.ex_15_1.ex_15_1_4;
-
-import java.time.Duration;
-import java.time.Instant;
+import ch_15.practice_problems.LeetcodeProblem5;
 
 public class TestCode {
 	public static void main(String[] args) {
-	String s1 = "ABCBD";
-	String s2 = "BAA";
-	System.out.println(LCS.lCSBottomUp(s1, s2));
-	System.out.println(LCS.longestCommonSubsequence(s1, s2));
+		System.out.println(LeetcodeProblem5.longestPalindromeBottomUp("babbad"));
 	}
 	private static void print(int [] arr) {
 		for(int i = 0; i < arr.length; i++) {

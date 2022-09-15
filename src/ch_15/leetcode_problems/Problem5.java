@@ -1,11 +1,11 @@
-package ch_15.practice_problems;
+package ch_15.leetcode_problems;
 
 /*
     Problem Statement :- Given a string s, return the longest palindromic substring in s.
     Approach 1: Brute force -> check all the substrings for the palindrome. This will take time complexity of O(n^3)
     Approach 2: Dynamic Programming -> Time complexity O(n^2) using extra space of O(n^2)
  */
-public class LeetcodeProblem5 {
+public class Problem5 {
         public static String longestPalindrome(String s) {
         String [][] palindrome = new String[s.length()][s.length()];
         return palindromeHelper(s, 0, s.length()-1, palindrome);

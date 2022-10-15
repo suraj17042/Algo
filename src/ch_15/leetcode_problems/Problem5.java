@@ -9,7 +9,6 @@ public class Problem5 {
         public static String longestPalindrome(String s) {
         String [][] palindrome = new String[s.length()][s.length()];
         return palindromeHelper(s, 0, s.length()-1, palindrome);
-
     }
 
     /*
